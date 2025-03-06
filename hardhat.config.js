@@ -6,7 +6,7 @@ module.exports = {
   networks: {
     sepolia: {
       url: process.env.ALCHEMY_SEPOLIA_RPC, // Use Alchemy or Infura RPC
-      accounts: [process.env.PRIVATE_KEY], // Your wallet private key
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
   },
 };
