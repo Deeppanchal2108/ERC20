@@ -11,6 +11,7 @@ function Page() {
       if (window.ethereum) {
         try {
           const accounts = await window.ethereum.request({ method: "eth_accounts" });
+          console.log("Accounts found:", accounts);
           if (accounts.length > 0) {
             setUserAddress(accounts[0]); // Set the first connected account
           }

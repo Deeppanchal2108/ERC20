@@ -154,22 +154,30 @@ export const ABI = [
     }
 ];
 
+// Connect to the contract using ethers.js
+//This function will  always runs on the client side cause window object is not available on the server side
 export const getContract = async () => {
 
     if (typeof window === "undefined") {
         throw new Error("This function must be called in a browser environment.");
     }
 
+    //window.ethereum is the Ethereum provider that is injected by MetaMask.
     if (!window.ethereum) {
         throw new Error("MetaMask is not installed. Please install it.");
     }
 
+
+    //This provider allows reading from the blockchain (but cannot sign transactions).
     const provider = new ethers.BrowserProvider(window.ethereum);
+
+    //This signer can sign transactions.
     const signer = await provider.getSigner();
 
     if (!CONTRACT_ADDRESS) {
         throw new Error("Contract address is not set. Check your .env file.");
     }
 
+    // Create a new contract instance with the ABI and address
     return new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 };
