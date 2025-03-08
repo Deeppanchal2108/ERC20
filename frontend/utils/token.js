@@ -1,9 +1,6 @@
 "use client";
-
 import { ethers } from "ethers";
-
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
-
 if (!CONTRACT_ADDRESS) {
     console.error("⚠️ Contract address is missing! Check your .env file.");
 }
